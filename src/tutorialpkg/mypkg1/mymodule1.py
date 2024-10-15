@@ -1,3 +1,10 @@
+import pathlib
+from pathlib import Path
+#import tutorialpkg
+from tutorialpkg.mypkg2.mymodule2_1 import calculate_area_of_circle
+from tutorialpkg.mypkg2.mymodule2_2 import fetch_user_data
+
+
 mock_database = {
     1: {'name': 'Alice', 'email': 'alice@example.com', 'age': 30},
     42: {'name': 'Bob', 'email': 'bob@example.com', 'age': 45},
