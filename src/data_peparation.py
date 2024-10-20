@@ -77,6 +77,9 @@ def data_preparation(dataframearray):
             df_medal[col] = df_medal[col].fillna(0)
             df_medal[col] = df_medal[col].replace([np.inf, -np.inf], 0)
             df_medal[col] = df_medal[col].astype(int)
+    dataframearray[0] = df_event
+    dataframearray[2] = df_medal
+    return dataframearray
 
 
 def add_new_column(dataframearray):
@@ -124,6 +127,7 @@ def dataframe_combine(dataframearray):
 
 def output_csv(dataframearray):
         location = Path(__file__).parent.joinpath("tutorialpkg","data","paralympics_events_prepared.csv")
+        print(dataframearray[0])
         dataframearray[0].to_csv(location, index=False)
 
 
@@ -132,10 +136,12 @@ def output_csv(dataframearray):
 
 if __name__ == '__main__':
     locationarray,dataframearray = readfile()
-    dataframearray_altered = add_new_column(dataframearray)
-    describe_dataframe(dataframearray_altered)
-    data_preparation(dataframearray_altered)
+    dataframearray_convert_daytime = data_preparation(dataframearray)
+    dataframearray_add_duration = add_new_column(dataframearray_convert_daytime)
+    describe_dataframe(dataframearray_add_duration)
 
-    combined_dataframe_array = dataframe_combine(dataframearray_altered)
-    output_csv(combined_dataframe_array)
+    countryname_replaced_dataframearray = replace_country_name(dataframearray_add_duration)
+    final_dataframe = dataframe_combine(countryname_replaced_dataframearray)
+
+    output_csv(final_dataframe)
     
