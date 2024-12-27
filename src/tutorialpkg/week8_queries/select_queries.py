@@ -114,7 +114,7 @@ if __name__ == '__main__':
     run_chinook_select_queries(ch_con, ch_cur)
 
     # Chinook database select queries with join
-    run_chinook_select_join_queries(ch_con, ch_cur)
+    # run_chinook_select_join_queries(ch_con, ch_cur)
 
     # Close the connection
     ch_con.close()
